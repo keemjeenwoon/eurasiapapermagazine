@@ -40,10 +40,11 @@
             width: 300px;
             height: 400px;
             position: absolute;
-            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.4s ease-out;
             cursor: pointer;
             left: 50%;
             transform-origin: center;
+            will-change: transform, opacity;
         }
 
         .cover img {
@@ -54,38 +55,54 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.8);
         }
 
+        /* Center */
         .cover[data-position="0"] {
             transform: translateX(-50%) translateZ(0) scale(1.2);
-            z-index: 5;
+            z-index: 10;
             opacity: 1;
         }
 
+        /* Left side */
         .cover[data-position="-1"] {
             transform: translateX(-120%) translateZ(-200px) rotateY(35deg) scale(0.85);
-            z-index: 4;
+            z-index: 9;
             opacity: 0.7;
         }
 
         .cover[data-position="-2"] {
             transform: translateX(-190%) translateZ(-400px) rotateY(45deg) scale(0.7);
-            z-index: 3;
-            opacity: 0.4;
+            z-index: 8;
+            opacity: 0.5;
         }
 
+        .cover[data-position="-3"] {
+            transform: translateX(-260%) translateZ(-600px) rotateY(50deg) scale(0.6);
+            z-index: 7;
+            opacity: 0.3;
+        }
+
+        /* Right side */
         .cover[data-position="1"] {
             transform: translateX(20%) translateZ(-200px) rotateY(-35deg) scale(0.85);
-            z-index: 4;
+            z-index: 9;
             opacity: 0.7;
         }
 
         .cover[data-position="2"] {
             transform: translateX(90%) translateZ(-400px) rotateY(-45deg) scale(0.7);
-            z-index: 3;
-            opacity: 0.4;
+            z-index: 8;
+            opacity: 0.5;
         }
 
-        .cover[data-position^="-"]:not([data-position="-1"]):not([data-position="-2"]),
-        .cover[data-position]:not([data-position="0"]):not([data-position="1"]):not([data-position="2"]) {
+        .cover[data-position="3"] {
+            transform: translateX(160%) translateZ(-600px) rotateY(-50deg) scale(0.6);
+            z-index: 7;
+            opacity: 0.3;
+        }
+
+        /* Far sides - hidden */
+        .cover[data-position^="-"]:not([data-position="-1"]):not([data-position="-2"]):not([data-position="-3"]),
+        .cover[data-position]:not([data-position="0"]):not([data-position="1"]):not([data-position="2"]):not([data-position="3"]) {
             opacity: 0;
             pointer-events: none;
         }
@@ -94,21 +111,27 @@
 <body>
     <div class="coverflow-container">
         <div class="coverflow" id="coverflow">
+            <div class="cover" data-position="-2">
+                <img src="/assets/images/covers/test1.png" alt="Interview 1">
+            </div>
+            <div class="cover" data-position="-1">
+                <img src="/assets/images/covers/test2.png" alt="Interview 2">
+            </div>
             <div class="cover" data-position="0">
-              <img src="/assets/images/covers/test1.png" alt="Interview 1">
-              </div>
-              <div class="cover" data-position="1">
-                  <img src="/assets/images/covers/test2.png" alt="Interview 2">
-              </div>
-              <div class="cover" data-position="2">
-                  <img src="/assets/images/covers/test3.png" alt="Interview 3">
-              </div>
+                <img src="/assets/images/covers/test3.png" alt="Interview 3">
+            </div>
+            <div class="cover" data-position="1">
+                <img src="/assets/images/covers/test1.png" alt="Interview 1">
+            </div>
+            <div class="cover" data-position="2">
+                <img src="/assets/images/covers/test2.png" alt="Interview 2">
+            </div>
         </div>
     </div>
 
     <script>
         const covers = document.querySelectorAll('.cover');
-        let currentIndex = 0;
+        let currentIndex = 2; // 시작 인덱스 (중앙)
 
         function updatePositions() {
             covers.forEach((cover, index) => {
