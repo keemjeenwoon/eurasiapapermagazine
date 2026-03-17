@@ -40,9 +40,6 @@
             letter-spacing: 0.5px;
         }
 
-        .content {
-        }
-
         .title {
             font-size: 16pt;
             font-weight: bold;
@@ -91,8 +88,7 @@
 </head>
 <body>
     <div class="container">
-        {% for post in site.posts limit:1 %}
-        <a href="{{ post.url }}">
+        <a href="/2026/03/17/Kasseta.html">
             <article class="article">
                 <div class="date">
                     3 DAYS<br>AGO
@@ -106,7 +102,6 @@
                 </div>
             </article>
         </a>
-        {% endfor %}
     </div>
 </body>
 </html>
