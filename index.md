@@ -1,9 +1,12 @@
+---
+---
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eurasia Paper Magazine</title>
+    <link href="https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/css/SpoqaHanSansNeo.css" rel="stylesheet" type="text/css">
     <style>
         * {
             margin: 0;
@@ -13,7 +16,7 @@
         
         body {
             background: #ffffff;
-            font-family: 'Spoqa Han Sans Neo', 'Times New Roman', Times, serif;
+            font-family: 'Spoqa Han Sans Neo', -apple-system, sans-serif;
             padding: 30px 0;
             color: #000;
         }
@@ -90,22 +93,21 @@
 </head>
 <body>
     <div class="container">
-        {% for post in site.posts limit:1 %}
-        <a href="{{ post.url }}">
+        {% assign latest_post = site.posts.first %}
+        <a href="{{ latest_post.url }}">
             <article class="article">
                 <div class="date">
-                    {{ post.date | date: "%d %b" | upcase }}<br>{{ post.date | date: "%Y" }}
+                    {{ latest_post.date | date: "%d %b" | upcase }}<br>{{ latest_post.date | date: "%Y" }}
                 </div>
                 <div class="content">
-                    <h1 class="title">{{ post.title }}</h1>
+                    <h1 class="title">{{ latest_post.title }}</h1>
                     <p class="description">
                         눌려있던 녹음 버튼이 튀어 오르고, 소년은 카세트를 꺼내 친구 집으로 간다. 재생 버튼을 누르고 스풀이 돌아가면, 둔탁한 리듬과 소년의 목소리가 작은 방을 채운다.
                     </p>
-                    <img src="/assets/images/covers/kasseta1.png" alt="{{ post.title }}" class="cover-image">
+                    <img src="/assets/images/covers/kasseta1.png" alt="{{ latest_post.title }}" class="cover-image">
                 </div>
             </article>
         </a>
-        {% endfor %}
     </div>
 </body>
 </html>
