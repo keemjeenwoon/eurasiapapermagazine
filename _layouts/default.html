@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }} - Eurasia Paper Magazine</title>
+    <link href="https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/css/SpoqaHanSansNeo.css" rel="stylesheet" type="text/css">
     <style>
         * {
             margin: 0;
@@ -13,7 +14,7 @@
         
         body {
             background: #ffffff;
-            font-family: 'Times New Roman', Times, serif, -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Spoqa Han Sans Neo', -apple-system, sans-serif;
             padding: 30px 0;
             color: #000;
             line-height: 1.6;
@@ -38,15 +39,21 @@
             margin-bottom: 15px;
         }
 
+        /* 영어/러시아어만 Times */
+        p:lang(en), p:lang(ru), em:lang(en), em:lang(ru), strong:lang(en), strong:lang(ru) {
+            font-family: 'Times New Roman', Times, serif;
+        }
+
         img {
             max-width: 100%;
             height: auto;
             margin: 20px 0;
         }
 
-        /* 한글은 기존 폰트 유지 */
-        body {
-            font-family: 'Spoqa Han Sans Neo', 'Times New Roman', Times, serif;
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 30px 0;
         }
 
         /* 모바일 */
