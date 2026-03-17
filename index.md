@@ -20,22 +20,18 @@
             padding: 30px 0;
             color: #000;
         }
-
         .container {
             max-width: 500px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
         .article {
             display: grid;
             grid-template-columns: 80px 1fr;
             gap: 20px;
             padding: 30px 0;
-            border-top: 1px solid #ddd;
             border-bottom: 1px solid #ddd;
         }
-
         .date {
             font-family: 'Times New Roman', Times, serif;
             font-size: 8pt;
@@ -43,7 +39,6 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-
         .title {
             font-family: 'Times New Roman', Times, serif;
             font-size: 16pt;
@@ -51,40 +46,33 @@
             margin-bottom: 10px;
             line-height: 1.2;
         }
-
         .description {
             font-size: 10pt;
             line-height: 1.6;
             margin-bottom: 15px;
         }
-
         .cover-image {
             width: 100%;
             aspect-ratio: 3 / 4;
             object-fit: cover;
         }
-
         a {
             text-decoration: none;
             color: inherit;
         }
-
         /* 모바일 */
         @media (max-width: 767px) {
             body {
                 padding: 20px 0;
             }
-
             .container {
                 max-width: 320px;
                 padding: 0 10px;
             }
-
             .article {
                 grid-template-columns: 1fr;
                 gap: 15px;
             }
-
             .title {
                 font-size: 20pt;
             }
