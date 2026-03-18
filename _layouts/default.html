@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }} - Eurasia Paper Magazine</title>
     <link href="https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/css/SpoqaHanSansNeo.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Aboreto&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,7 +15,7 @@
         
         body {
             background: #ffffff;
-            font-family: 'Spoqa Han Sans Neo', -apple-system, sans-serif;
+            font-family: 'Spoqa Han Sans Neo', 'Times New Roman', Times, serif;
             padding: 30px 0;
             color: #000;
             line-height: 1.6;
@@ -24,6 +25,7 @@
             max-width: 500px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
         }
 
         h1 {
@@ -52,6 +54,43 @@
             margin: 30px 0;
         }
 
+        /* 세로 전광판 홈버튼 */
+        .home-button {
+            position: fixed;
+            left: 20px;
+            top: 30px;
+            width: 40px;
+            height: auto;
+            overflow: hidden;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .home-logo {
+            font-family: 'Herculanum', Georgia, 'Times New Roman', serif;
+            font-size: 11pt;
+            font-weight: bold;
+            white-space: nowrap;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            text-shadow: 0.5px 0 0 black, -0.5px 0 0 black, 0 0.5px 0 black, 0 -0.5px 0 black;
+        }
+
+        .home-logo-scroll {
+            display: inline-block;
+            animation: scrollVertical 15s linear infinite;
+        }
+
+        @keyframes scrollVertical {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+
+        .home-button:hover {
+            opacity: 0.6;
+        }
+
         /* 모바일 */
         @media (max-width: 767px) {
             .container {
@@ -62,10 +101,32 @@
             h1 {
                 font-size: 20pt;
             }
+
+            .home-button {
+                left: 10px;
+                top: 20px;
+            }
+
+            .home-logo {
+                font-family: 'Aboreto', sans-serif;
+                font-size: 9pt;
+                letter-spacing: -0.5px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 세로 전광판 홈버튼 -->
+    <a href="/">
+        <div class="home-button">
+            <div class="home-logo">
+                <span class="home-logo-scroll">
+                    Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+            </div>
+        </div>
+    </a>
+
     <div class="container">
         {{ content }}
     </div>
