@@ -62,7 +62,7 @@ layout: none
         .wrapper {
             width: 100%;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 3fr 4fr;
             gap: 0;
         }
 
