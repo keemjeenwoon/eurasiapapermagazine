@@ -7,7 +7,7 @@ layout: none
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eurasia Paper Magazine</title>
     <link href="https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/css/SpoqaHanSansNeo.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css2?family=Aboreto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -35,9 +35,10 @@ layout: none
         }
 
         .logo {
-            font-family: 'Herculanum', Georgia, 'Times New Roman', serif;
+            font-family: 'Bebas Neue', sans-serif;
             font-size: 24pt;
             font-weight: bold;
+            letter-spacing: -1px;
             white-space: nowrap;
             text-shadow: 0.5px 0 0 black, -0.5px 0 0 black, 0 0.5px 0 black, 0 -0.5px 0 black;
         }
@@ -163,7 +164,7 @@ layout: none
             }
 
             .logo {
-                font-family: 'Aboreto', sans-serif;
+                font-family: 'Bebas Neue', sans-serif;
                 font-weight: bold;
                 font-size: 20pt;
                 letter-spacing: -1px;
