@@ -24,7 +24,7 @@ layout: none
         /* 헤더 - 페이지 최상단 가운데 */
         .header {
             text-align: center;
-            padding: 30px 0 0 0;
+            padding: 30px 0 10px 0;
         }
 
         .logo {
@@ -168,7 +168,7 @@ layout: none
         <div class="wrapper">
             <!-- 왼쪽: 글 목록 -->
             <div class="list">
-                <a href="/2026/03/17/Kasseta.html" class="post-link">
+                <a href="/2026/03/17/Kasseta.html" class="post-link" data-url="/2026/03/17/Kasseta.html">
                     <div class="post-item" 
                          data-slug="kasseta"
                          onmouseenter="showImage(this)"
@@ -196,6 +196,7 @@ layout: none
     <script>
         let mobileImageShown = false;
         let currentSlug = null;
+        let currentUrl = null;
 
         function showImage(element) {
             const slug = element.getAttribute('data-slug');
@@ -223,6 +224,7 @@ layout: none
             link.addEventListener('click', function(e) {
                 if (window.innerWidth <= 767) {
                     const slug = this.querySelector('.post-item').getAttribute('data-slug');
+                    const url = this.getAttribute('data-url');
                     
                     if (!mobileImageShown || currentSlug !== slug) {
                         e.preventDefault();
@@ -235,17 +237,22 @@ layout: none
                         
                         mobileImageShown = true;
                         currentSlug = slug;
+                        currentUrl = url;
                     }
                     // 두 번째 클릭: 페이지 이동 (기본 동작)
                 }
             });
         });
 
-        // 모달 클릭 시 닫기
+        // 모달 이미지 클릭 시 페이지 이동
         document.getElementById('mobileModal').addEventListener('click', function() {
-            this.classList.remove('active');
-            mobileImageShown = false;
-            currentSlug = null;
+            if (currentUrl) {
+                window.location.href = currentUrl;
+            } else {
+                this.classList.remove('active');
+                mobileImageShown = false;
+                currentSlug = null;
+            }
         });
     </script>
 </body>
