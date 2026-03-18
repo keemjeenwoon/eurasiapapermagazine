@@ -28,13 +28,14 @@ layout: none
         }
 
         .logo {
-            font-family: Georgia, 'Times New Roman', serif;
+            font-family: 'Herculanum', Georgia, 'Times New Roman', serif;
             font-size: 11pt;
             font-weight: bold;
-            line-height: 1.3;
+            line-height: 0.9;
             cursor: pointer;
             transition: opacity 0.3s;
             display: inline-block;
+            text-shadow: 0.5px 0 0 black, -0.5px 0 0 black, 0 0.5px 0 black, 0 -0.5px 0 black;
         }
 
         .logo:hover {
