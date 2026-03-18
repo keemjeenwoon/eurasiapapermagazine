@@ -113,15 +113,24 @@ layout: none
             z-index: 1000;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
 
         .mobile-modal.active {
             display: flex;
         }
 
-        .mobile-modal img {
+        .mobile-modal-image-wrapper {
             max-width: 90%;
             max-height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mobile-modal img {
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
         }
 
@@ -132,6 +141,13 @@ layout: none
 
         /* 모바일 */
         @media (max-width: 767px) {
+            .logo {
+                font-family: Arial, sans-serif;
+                font-weight: 900;
+                transform: scaleX(1.5);
+                letter-spacing: 3px;
+            }
+
             .main-container {
                 padding: 0 5%;
             }
@@ -190,7 +206,9 @@ layout: none
 
     <!-- 모바일 이미지 모달 -->
     <div class="mobile-modal" id="mobileModal">
-        <img src="" alt="" id="mobileModalImage">
+        <div class="mobile-modal-image-wrapper">
+            <img src="" alt="" id="mobileModalImage">
+        </div>
     </div>
 
     <script>
@@ -244,14 +262,22 @@ layout: none
             });
         });
 
-        // 모달 이미지 클릭 시 페이지 이동
-        document.getElementById('mobileModal').addEventListener('click', function() {
-            if (currentUrl) {
-                window.location.href = currentUrl;
-            } else {
+        // 모달 배경 클릭 시 닫기, 이미지 클릭 시 페이지 이동
+        document.getElementById('mobileModal').addEventListener('click', function(e) {
+            // 모달 배경 클릭 (이미지 외부)
+            if (e.target === this) {
                 this.classList.remove('active');
                 mobileImageShown = false;
                 currentSlug = null;
+                currentUrl = null;
+            }
+        });
+
+        // 이미지 클릭 시 페이지 이동
+        document.getElementById('mobileModalImage').addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (currentUrl) {
+                window.location.href = currentUrl;
             }
         });
     </script>
