@@ -21,25 +21,35 @@ layout: none
             overflow-x: hidden;
         }
 
-        /* 헤더 - 페이지 최상단 가운데 */
+        /* 헤더 - 전광판 애니메이션 */
         .header {
             text-align: center;
             padding: 30px 0 10px 0;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
         }
 
         .logo {
             font-family: 'Herculanum', Georgia, 'Times New Roman', serif;
-            font-size: 11pt;
+            font-size: 24pt;
             font-weight: bold;
-            line-height: 0.9;
-            cursor: pointer;
-            transition: opacity 0.3s;
-            display: inline-block;
+            white-space: nowrap;
             text-shadow: 0.5px 0 0 black, -0.5px 0 0 black, 0 0.5px 0 black, 0 -0.5px 0 black;
         }
 
-        .logo:hover {
-            opacity: 0.6;
+        .logo-scroll {
+            display: inline-block;
+            animation: scroll 15s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         /* 메인 컨테이너 */
@@ -144,8 +154,7 @@ layout: none
             .logo {
                 font-family: Arial, sans-serif;
                 font-weight: 900;
-                transform: scaleX(1.5);
-                letter-spacing: 3px;
+                font-size: 20pt;
             }
 
             .main-container {
@@ -168,15 +177,15 @@ layout: none
     </style>
 </head>
 <body>
-    <!-- 헤더 - 페이지 최상단 가운데 -->
+    <!-- 헤더 - 전광판 애니메이션 -->
     <div class="header">
-        <a href="/">
+        <div class="logo-container">
             <div class="logo">
-                Eurasia<br>
-                Paper<br>
-                Magazine
+                <span class="logo-scroll">
+                    Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
             </div>
-        </a>
+        </div>
     </div>
 
     <!-- 메인 컨텐츠 -->
@@ -257,14 +266,12 @@ layout: none
                         currentSlug = slug;
                         currentUrl = url;
                     }
-                    // 두 번째 클릭: 페이지 이동 (기본 동작)
                 }
             });
         });
 
-        // 모달 배경 클릭 시 닫기, 이미지 클릭 시 페이지 이동
+        // 모달 배경 클릭 시 닫기
         document.getElementById('mobileModal').addEventListener('click', function(e) {
-            // 모달 배경 클릭 (이미지 외부)
             if (e.target === this) {
                 this.classList.remove('active');
                 mobileImageShown = false;
