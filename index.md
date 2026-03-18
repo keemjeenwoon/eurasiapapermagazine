@@ -23,11 +23,10 @@ layout: none
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 80px;
+            padding: 0 12.5%;
         }
 
         .wrapper {
-            max-width: 1200px;
             width: 100%;
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -35,7 +34,7 @@ layout: none
 
         /* 왼쪽: 글 목록 */
         .list {
-            padding: 120px 80px;
+            padding: 20px 40px 60px 40px;
         }
 
         .post-item {
@@ -85,7 +84,7 @@ layout: none
         /* 모바일 */
         @media (max-width: 767px) {
             body {
-                padding: 40px;
+                padding: 0 5%;
             }
 
             .wrapper {
@@ -93,7 +92,7 @@ layout: none
             }
 
             .list {
-                padding: 60px 40px;
+                padding: 20px 20px 40px 20px;
             }
 
             .preview {
@@ -118,7 +117,7 @@ layout: none
 
         <!-- 오른쪽: 이미지 표시 -->
         <div class="preview" id="preview">
-            <img src="/assets/images/covers/kasseta1.png" 
+            <img src="/assets/images/covers/kassetacover.png" 
                  alt="КАССЕТА" 
                  class="preview-image" 
                  data-slug="kasseta">
@@ -128,7 +127,6 @@ layout: none
     <script>
         function showImage(element) {
             const slug = element.getAttribute('data-slug');
-            console.log('Hovering over:', slug);
             
             // 모든 이미지 숨기기
             document.querySelectorAll('.preview-image').forEach(img => {
@@ -137,7 +135,6 @@ layout: none
             
             // 해당 이미지만 표시
             const targetImage = document.querySelector(`.preview-image[data-slug="${slug}"]`);
-            console.log('Target image:', targetImage);
             if (targetImage) {
                 targetImage.classList.add('active');
             }
