@@ -23,15 +23,14 @@ layout: none
 
         /* 헤더 - 전광판 애니메이션 */
         .header {
-            text-align: center;
-            padding: 30px 0 10px 0;
-            overflow: hidden;
-            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 30px 12.5% 20px 12.5%;
         }
 
         .logo-container {
-            display: flex;
-            justify-content: center;
+            width: 100%;
+            overflow: hidden;
         }
 
         .logo {
@@ -151,6 +150,10 @@ layout: none
 
         /* 모바일 */
         @media (max-width: 767px) {
+            .header {
+                padding: 30px 5% 20px 5%;
+            }
+
             .logo {
                 font-family: Arial, sans-serif;
                 font-weight: 900;
