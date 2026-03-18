@@ -18,85 +18,132 @@ layout: none
         body {
             background: #ffffff;
             font-family: 'Spoqa Han Sans Neo', -apple-system, sans-serif;
-            padding: 30px 0;
             color: #000;
+            overflow-x: hidden;
         }
+
         .container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .article {
             display: grid;
-            grid-template-columns: 80px 1fr;
-            gap: 20px;
-            padding: 30px 0;
-            border-bottom: 1px solid #ddd;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
         }
-        .date {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 8pt;
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+
+        /* 왼쪽: 글 목록 */
+        .list {
+            padding: 60px 40px;
+            border-right: 1px solid #ddd;
         }
-        .title {
+
+        .post-item {
+            margin-bottom: 40px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .post-item:hover {
+            opacity: 0.6;
+        }
+
+        .post-title {
             font-family: 'Times New Roman', Times, serif;
             font-size: 16pt;
             font-weight: bold;
-            margin-bottom: 10px;
-            line-height: 1.2;
+            margin-bottom: 5px;
         }
-        .description {
-            font-size: 10pt;
-            line-height: 1.6;
-            margin-bottom: 15px;
+
+        .post-meta {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 8pt;
+            text-transform: uppercase;
+            color: #666;
         }
-        .cover-image {
+
+        /* 오른쪽: 이미지 표시 영역 */
+        .preview {
+            position: relative;
+            background: #f5f5f5;
+        }
+
+        .preview-image {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            aspect-ratio: 3 / 4;
+            height: 100%;
             object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
-        a {
-            text-decoration: none;
-            color: inherit;
+
+        .preview-image.active {
+            opacity: 1;
         }
+
         /* 모바일 */
         @media (max-width: 767px) {
-            body {
-                padding: 20px 0;
-            }
             .container {
-                max-width: 320px;
-                padding: 0 10px;
-            }
-            .article {
                 grid-template-columns: 1fr;
-                gap: 15px;
             }
-            .title {
-                font-size: 20pt;
+
+            .list {
+                border-right: none;
+                padding: 30px 20px;
+            }
+
+            .preview {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        {% assign latest_post = site.posts.first %}
-        <a href="{{ latest_post.url }}">
-            <article class="article">
-                <div class="date">
-                    {{ latest_post.date | date: "%d %b" | upcase }}<br>{{ latest_post.date | date: "%Y" }}
-                </div>
-                <div class="content">
-                    <h1 class="title">{{ latest_post.title }}</h1>
-                    <p class="description">
-                        눌려있던 녹음 버튼이 튀어 오르고, 소년은 카세트를 꺼내 친구 집으로 간다. 재생 버튼을 누르고 스풀이 돌아가면, 둔탁한 리듬과 소년의 목소리가 작은 방을 채운다.
-                    </p>
-                    <img src="/assets/images/covers/kasseta1.png" alt="{{ latest_post.title }}" class="cover-image">
-                </div>
-            </article>
-        </a>
+        <!-- 왼쪽: 글 목록 -->
+        <div class="list">
+            {% for post in site.posts %}
+            <div class="post-item" 
+                 data-image="/assets/images/covers/{{ post.slug }}.png"
+                 onmouseenter="showImage(this)"
+                 onmouseleave="hideImage()">
+                <div class="post-title">{{ post.title }}</div>
+                <div class="post-meta">{{ post.date | date: "%d %b %Y" }}</div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- 오른쪽: 이미지 표시 -->
+        <div class="preview" id="preview">
+            {% for post in site.posts %}
+            <img src="/assets/images/covers/{{ post.slug }}.png" 
+                 alt="{{ post.title }}" 
+                 class="preview-image" 
+                 data-slug="{{ post.slug }}">
+            {% endfor %}
+        </div>
     </div>
+
+    <script>
+        function showImage(element) {
+            const imageUrl = element.getAttribute('data-image');
+            const slug = imageUrl.split('/').pop().replace('.png', '');
+            
+            // 모든 이미지 숨기기
+            document.querySelectorAll('.preview-image').forEach(img => {
+                img.classList.remove('active');
+            });
+            
+            // 해당 이미지만 표시
+            const targetImage = document.querySelector(`[data-slug="${slug}"]`);
+            if (targetImage) {
+                targetImage.classList.add('active');
+            }
+        }
+
+        function hideImage() {
+            document.querySelectorAll('.preview-image').forEach(img => {
+                img.classList.remove('active');
+            });
+        }
+    </script>
 </body>
 </html>
