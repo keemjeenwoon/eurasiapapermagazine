@@ -7,6 +7,7 @@ layout: none
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eurasia Paper Magazine</title>
     <link href="https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/css/SpoqaHanSansNeo.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Aboreto&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -61,7 +62,7 @@ layout: none
         .wrapper {
             width: 100%;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 2fr;
             gap: 0;
         }
 
@@ -155,9 +156,10 @@ layout: none
             }
 
             .logo {
-                font-family: Arial, sans-serif;
-                font-weight: 900;
+                font-family: 'Aboreto', sans-serif;
+                font-weight: bold;
                 font-size: 20pt;
+                letter-spacing: -1px;
             }
 
             .main-container {
