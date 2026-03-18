@@ -154,7 +154,7 @@ layout: none
         /* 모바일 */
         @media (max-width: 767px) {
             .header {
-                padding: 30px 5% 20px 5%;
+                padding: 30px 5% 2px 5%;
                 justify-content: center;
             }
 
@@ -178,7 +178,7 @@ layout: none
             }
 
             .list {
-                padding: 20px 0 40px 0;
+                padding: 0 0 40px 0;
                 text-align: left;
             }
 

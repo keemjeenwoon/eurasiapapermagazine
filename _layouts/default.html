@@ -89,6 +89,7 @@
             .home-logo {
                 font-family: 'Aboreto', sans-serif;
                 font-size: 9pt;
+                font-weight: bold;
                 letter-spacing: -0.5px;
             }
         }
@@ -103,7 +104,7 @@
         // 첫 번째 이미지 찾기
         const firstImage = document.querySelector('.container img:first-of-type');
         
-        if (firstImage && window.innerWidth > 767) {
+        if (firstImage) {
             // 이미지를 감싸는 wrapper 생성
             const wrapper = document.createElement('div');
             wrapper.style.position = 'relative';
@@ -118,9 +119,9 @@
             const homeButton = document.createElement('a');
             homeButton.href = '/';
             homeButton.style.position = 'absolute';
-            homeButton.style.left = '-42px';
+            homeButton.style.left = '0';
             homeButton.style.top = '0';
-            homeButton.style.width = '40px';
+            homeButton.style.width = '20px';
             homeButton.style.overflow = 'hidden';
             homeButton.style.cursor = 'pointer';
             homeButton.style.textDecoration = 'none';
@@ -137,8 +138,14 @@
             // wrapper에 버튼 추가
             wrapper.appendChild(homeButton);
             
-            // 높이 설정
-            homeButton.style.height = firstImage.offsetHeight + 'px';
+            // 높이 설정 (이미지의 절반)
+            const setHeight = () => {
+                homeButton.style.height = (firstImage.offsetHeight / 2) + 'px';
+            };
+            
+            setHeight();
+            firstImage.addEventListener('load', setHeight);
+            window.addEventListener('resize', setHeight);
             
             // hover 효과
             homeButton.addEventListener('mouseenter', function() {
@@ -147,30 +154,6 @@
             homeButton.addEventListener('mouseleave', function() {
                 this.style.opacity = '1';
             });
-            
-        } else if (window.innerWidth <= 767) {
-            // 모바일: fixed 홈버튼
-            const homeButton = document.createElement('a');
-            homeButton.href = '/';
-            homeButton.style.position = 'fixed';
-            homeButton.style.left = '10px';
-            homeButton.style.top = '20px';
-            homeButton.style.width = '40px';
-            homeButton.style.overflow = 'hidden';
-            homeButton.style.cursor = 'pointer';
-            homeButton.style.zIndex = '100';
-            homeButton.style.textDecoration = 'none';
-            homeButton.style.color = 'inherit';
-            
-            homeButton.innerHTML = `
-                <div class="home-logo">
-                    <span class="home-logo-scroll">
-                        Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;
-                    </span>
-                </div>
-            `;
-            
-            document.body.insertBefore(homeButton, document.body.firstChild);
         }
     </script>
 </body>
