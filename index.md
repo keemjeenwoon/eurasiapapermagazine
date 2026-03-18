@@ -1,7 +1,6 @@
 ---
 layout: none
 ---
-<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -20,22 +19,27 @@ layout: none
             font-family: 'Spoqa Han Sans Neo', -apple-system, sans-serif;
             color: #000;
             overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px;
         }
 
-        .container {
+        .wrapper {
+            max-width: 1200px;
+            width: 100%;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            min-height: 100vh;
         }
 
         /* 왼쪽: 글 목록 */
         .list {
             padding: 60px 40px;
-            border-right: 1px solid #ddd;
         }
 
         .post-item {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             cursor: pointer;
             transition: opacity 0.3s;
         }
@@ -44,24 +48,18 @@ layout: none
             opacity: 0.6;
         }
 
-        .post-title {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 16pt;
+        .post-category {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 14pt;
             font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .post-meta {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 8pt;
-            text-transform: uppercase;
-            color: #666;
+            letter-spacing: 0.5px;
         }
 
         /* 오른쪽: 이미지 표시 영역 */
         .preview {
             position: relative;
-            background: #f5f5f5;
+            background: #ffffff;
+            min-height: 600px;
         }
 
         .preview-image {
@@ -81,12 +79,15 @@ layout: none
 
         /* 모바일 */
         @media (max-width: 767px) {
-            .container {
+            body {
+                padding: 20px;
+            }
+
+            .wrapper {
                 grid-template-columns: 1fr;
             }
 
             .list {
-                border-right: none;
                 padding: 30px 20px;
             }
 
@@ -97,35 +98,29 @@ layout: none
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="wrapper">
         <!-- 왼쪽: 글 목록 -->
         <div class="list">
-            {% for post in site.posts %}
             <div class="post-item" 
-                 data-image="/assets/images/covers/{{ post.slug }}.png"
+                 data-slug="kasseta"
                  onmouseenter="showImage(this)"
                  onmouseleave="hideImage()">
-                <div class="post-title">{{ post.title }}</div>
-                <div class="post-meta">{{ post.date | date: "%d %b %Y" }}</div>
+                <div class="post-category">[Interview][POCC][КАССЕТА]</div>
             </div>
-            {% endfor %}
         </div>
 
         <!-- 오른쪽: 이미지 표시 -->
         <div class="preview" id="preview">
-            {% for post in site.posts %}
-            <img src="/assets/images/covers/{{ post.slug }}.png" 
-                 alt="{{ post.title }}" 
+            <img src="/assets/images/covers/kasseta1.png" 
+                 alt="КАССЕТА" 
                  class="preview-image" 
-                 data-slug="{{ post.slug }}">
-            {% endfor %}
+                 data-slug="kasseta">
         </div>
     </div>
 
     <script>
         function showImage(element) {
-            const imageUrl = element.getAttribute('data-image');
-            const slug = imageUrl.split('/').pop().replace('.png', '');
+            const slug = element.getAttribute('data-slug');
             
             // 모든 이미지 숨기기
             document.querySelectorAll('.preview-image').forEach(img => {
