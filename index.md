@@ -7,7 +7,6 @@ layout: none
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eurasia Paper Magazine</title>
     <link href="https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/css/SpoqaHanSansNeo.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -20,10 +19,32 @@ layout: none
             font-family: 'Spoqa Han Sans Neo', -apple-system, sans-serif;
             color: #000;
             overflow-x: hidden;
+        }
+
+        /* 헤더 - 페이지 최상단 가운데 */
+        .header {
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .logo {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 11pt;
+            font-weight: bold;
+            line-height: 1.3;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            display: inline-block;
+        }
+
+        .logo:hover {
+            opacity: 0.6;
+        }
+
+        /* 메인 컨테이너 */
+        .main-container {
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
             padding: 0 12.5%;
         }
 
@@ -37,23 +58,6 @@ layout: none
         /* 왼쪽: 글 목록 */
         .list {
             padding: 20px 0 60px 0;
-        }
-
-        /* 헤더 */
-        .header {
-            margin-bottom: 40px;
-        }
-
-        .logo {
-            font-family: 'Permanent Marker', cursive;
-            font-size: 11pt;
-            line-height: 1.3;
-            cursor: pointer;
-            transition: opacity 0.3s;
-        }
-
-        .logo:hover {
-            opacity: 0.6;
         }
 
         .post-item {
@@ -102,7 +106,7 @@ layout: none
 
         /* 모바일 */
         @media (max-width: 767px) {
-            body {
+            .main-container {
                 padding: 0 5%;
             }
 
@@ -121,37 +125,39 @@ layout: none
     </style>
 </head>
 <body>
-    <div class="wrapper">
-        <!-- 왼쪽: 글 목록 -->
-        <div class="list">
-            <!-- 헤더 -->
-            <div class="header">
-                <a href="/">
-                    <div class="logo">
-                        Eurasia<br>
-                        Paper<br>
-                        Magazine
+    <!-- 헤더 - 페이지 최상단 가운데 -->
+    <div class="header">
+        <a href="/">
+            <div class="logo">
+                Eurasia<br>
+                Paper<br>
+                Magazine
+            </div>
+        </a>
+    </div>
+
+    <!-- 메인 컨텐츠 -->
+    <div class="main-container">
+        <div class="wrapper">
+            <!-- 왼쪽: 글 목록 -->
+            <div class="list">
+                <a href="/2026/03/17/Kasseta.html">
+                    <div class="post-item" 
+                         data-slug="kasseta"
+                         onmouseenter="showImage(this)"
+                         onmouseleave="hideImage()">
+                        <div class="post-category">[Interview][POCC][КАССЕТА]</div>
                     </div>
                 </a>
             </div>
 
-            <!-- 글목록 -->
-            <a href="/2026/03/17/Kasseta.html">
-                <div class="post-item" 
-                     data-slug="kasseta"
-                     onmouseenter="showImage(this)"
-                     onmouseleave="hideImage()">
-                    <div class="post-category">[Interview][POCC][КАССЕТА]</div>
-                </div>
-            </a>
-        </div>
-
-        <!-- 오른쪽: 이미지 표시 -->
-        <div class="preview" id="preview">
-            <img src="/assets/images/covers/kassetacover.png" 
-                 alt="КАССЕТА" 
-                 class="preview-image" 
-                 data-slug="kasseta">
+            <!-- 오른쪽: 이미지 표시 -->
+            <div class="preview" id="preview">
+                <img src="/assets/images/covers/kassetacover.png" 
+                     alt="КАССЕТА" 
+                     class="preview-image" 
+                     data-slug="kasseta">
+            </div>
         </div>
     </div>
 
