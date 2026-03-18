@@ -26,7 +26,7 @@ layout: none
         .header {
             display: flex;
             justify-content: flex-start;
-            padding: 30px 12.5% 20px 12.5%;
+            padding: 30px 12.5% 10px 12.5%;
         }
 
         .logo-container {
@@ -155,7 +155,7 @@ layout: none
         /* 모바일 */
         @media (max-width: 767px) {
             .header {
-                padding: 30px 5% 2px 5%;
+                padding: 30px 5% 10px 5%;
                 justify-content: center;
             }
 
