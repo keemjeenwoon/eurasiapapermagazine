@@ -30,7 +30,7 @@ layout: none
         }
 
         .logo-container {
-            width: calc(100% * 3 / 7);
+            width: 100%;
             overflow: hidden;
         }
 
@@ -233,6 +233,52 @@ layout: none
     </div>
 
     <script>
+        // 헤더 트랙 너비 동적 조정
+        function adjustHeaderTrack() {
+            if (window.innerWidth > 767) {
+                const postCategory = document.querySelector('.post-category');
+                const listColumn = document.querySelector('.list');
+                const wrapper = document.querySelector('.wrapper');
+                const header = document.querySelector('.header');
+                const logoContainer = document.querySelector('.logo-container');
+                
+                if (postCategory && listColumn && wrapper && header && logoContainer) {
+                    // 글자 너비 측정
+                    const textWidth = postCategory.offsetWidth;
+                    
+                    // 글목록 컬럼 너비
+                    const listWidth = listColumn.offsetWidth;
+                    
+                    // 전체 wrapper 너비
+                    const wrapperWidth = wrapper.offsetWidth;
+                    
+                    // 왼쪽 여백 = 글목록 너비 - 글자 너비
+                    const leftGap = listWidth - textWidth;
+                    
+                    // 트랙 시작 위치 = 페이지 여백(12.5%) + 왼쪽 여백
+                    const viewportWidth = window.innerWidth;
+                    const pageMargin = viewportWidth * 0.125;
+                    const trackStart = pageMargin + leftGap;
+                    
+                    // 트랙 너비 = 전체 - 왼쪽 여백
+                    const trackWidth = wrapperWidth - leftGap;
+                    
+                    // 헤더 padding 조정
+                    header.style.paddingLeft = trackStart + 'px';
+                    header.style.paddingRight = pageMargin + 'px';
+                    
+                    // 트랙 컨테이너 너비 조정
+                    logoContainer.style.width = trackWidth + 'px';
+                }
+            }
+        }
+        
+        // 페이지 로드 시 실행
+        window.addEventListener('load', adjustHeaderTrack);
+        
+        // 윈도우 리사이즈 시 재조정
+        window.addEventListener('resize', adjustHeaderTrack);
+
         let mobileImageShown = false;
         let currentSlug = null;
         let currentUrl = null;
