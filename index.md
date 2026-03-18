@@ -25,13 +25,12 @@ layout: none
         /* 헤더 - 전광판 애니메이션 */
         .header {
             display: flex;
-            justify-content: center;
-            padding: 30px 0 20px 0;
+            justify-content: flex-start;
+            padding: 30px 12.5% 20px 12.5%;
         }
 
         .logo-container {
-            width: 75%;
-            max-width: 1200px;
+            width: calc(100% * 3 / 7);
             overflow: hidden;
         }
 
@@ -88,6 +87,8 @@ layout: none
             font-size: 14pt;
             font-weight: normal;
             letter-spacing: 0.5px;
+            display: inline-block;
+            padding-right: 2px;
         }
 
         /* 오른쪽: 이미지 표시 영역 */
@@ -154,6 +155,7 @@ layout: none
         @media (max-width: 767px) {
             .header {
                 padding: 30px 5% 20px 5%;
+                justify-content: center;
             }
 
             .logo-container {
