@@ -19,14 +19,12 @@
             padding: 30px 0;
             color: #000;
             line-height: 1.6;
-            position: relative;
         }
 
         .container {
             max-width: 500px;
             margin: 0 auto;
             padding: 0 20px;
-            position: relative;
         }
 
         h1 {
@@ -49,10 +47,6 @@
             display: block;
         }
 
-        img:first-of-type {
-            position: relative;
-        }
-
         hr {
             border: none;
             border-top: 1px solid #ddd;
@@ -60,15 +54,6 @@
         }
 
         /* 세로 전광판 홈버튼 */
-        .home-button {
-            position: absolute;
-            left: calc((100vw - 500px) / 2 - 42px);
-            width: 40px;
-            overflow: hidden;
-            cursor: pointer;
-            z-index: 100;
-        }
-
         .home-logo {
             font-family: 'Herculanum', Georgia, 'Times New Roman', serif;
             font-size: 11pt;
@@ -90,10 +75,6 @@
             100% { transform: translateY(-50%); }
         }
 
-        .home-button:hover {
-            opacity: 0.6;
-        }
-
         /* 모바일 */
         @media (max-width: 767px) {
             .container {
@@ -105,24 +86,10 @@
                 font-size: 20pt;
             }
 
-            .home-button {
-                left: 10px;
-                top: 20px;
-                position: fixed;
-            }
-
             .home-logo {
                 font-family: 'Aboreto', sans-serif;
                 font-size: 9pt;
                 letter-spacing: -0.5px;
-            }
-        }
-
-        @media (min-width: 768px) and (max-width: 1100px) {
-            .home-button {
-                left: 20px;
-                position: fixed;
-                top: 30px;
             }
         }
     </style>
@@ -135,44 +102,74 @@
     <script>
         // 첫 번째 이미지 찾기
         const firstImage = document.querySelector('.container img:first-of-type');
+        
         if (firstImage && window.innerWidth > 767) {
+            // 이미지를 감싸는 wrapper 생성
+            const wrapper = document.createElement('div');
+            wrapper.style.position = 'relative';
+            wrapper.style.display = 'inline-block';
+            wrapper.style.width = '100%';
+            
+            // 이미지를 wrapper로 감싸기
+            firstImage.parentNode.insertBefore(wrapper, firstImage);
+            wrapper.appendChild(firstImage);
+            
             // 홈버튼 생성
             const homeButton = document.createElement('a');
             homeButton.href = '/';
+            homeButton.style.position = 'absolute';
+            homeButton.style.left = '-42px';
+            homeButton.style.top = '0';
+            homeButton.style.width = '40px';
+            homeButton.style.overflow = 'hidden';
+            homeButton.style.cursor = 'pointer';
+            homeButton.style.textDecoration = 'none';
+            homeButton.style.color = 'inherit';
+            
             homeButton.innerHTML = `
-                <div class="home-button">
-                    <div class="home-logo">
-                        <span class="home-logo-scroll">
-                            Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;
-                        </span>
-                    </div>
+                <div class="home-logo">
+                    <span class="home-logo-scroll">
+                        Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
                 </div>
             `;
             
-            // 이미지 부모에 추가
-            firstImage.parentElement.style.position = 'relative';
-            firstImage.parentElement.insertBefore(homeButton, firstImage);
+            // wrapper에 버튼 추가
+            wrapper.appendChild(homeButton);
             
-            // 이미지 위치 기준으로 홈버튼 배치
-            const button = homeButton.querySelector('.home-button');
-            const imageRect = firstImage.getBoundingClientRect();
-            const containerRect = firstImage.parentElement.getBoundingClientRect();
+            // 높이 설정
+            homeButton.style.height = firstImage.offsetHeight + 'px';
             
-            button.style.top = (firstImage.offsetTop) + 'px';
-            button.style.height = firstImage.offsetHeight + 'px';
+            // hover 효과
+            homeButton.addEventListener('mouseenter', function() {
+                this.style.opacity = '0.6';
+            });
+            homeButton.addEventListener('mouseleave', function() {
+                this.style.opacity = '1';
+            });
+            
         } else if (window.innerWidth <= 767) {
             // 모바일: fixed 홈버튼
             const homeButton = document.createElement('a');
             homeButton.href = '/';
+            homeButton.style.position = 'fixed';
+            homeButton.style.left = '10px';
+            homeButton.style.top = '20px';
+            homeButton.style.width = '40px';
+            homeButton.style.overflow = 'hidden';
+            homeButton.style.cursor = 'pointer';
+            homeButton.style.zIndex = '100';
+            homeButton.style.textDecoration = 'none';
+            homeButton.style.color = 'inherit';
+            
             homeButton.innerHTML = `
-                <div class="home-button">
-                    <div class="home-logo">
-                        <span class="home-logo-scroll">
-                            Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;
-                        </span>
-                    </div>
+                <div class="home-logo">
+                    <span class="home-logo-scroll">
+                        Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;Eurasia Paper Magazine&nbsp;&nbsp;&nbsp;&nbsp;
+                    </span>
                 </div>
             `;
+            
             document.body.insertBefore(homeButton, document.body.firstChild);
         }
     </script>
