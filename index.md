@@ -7,6 +7,7 @@ layout: none
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eurasia Paper Magazine</title>
     <link href="https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/css/SpoqaHanSansNeo.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -30,11 +31,29 @@ layout: none
             width: 100%;
             display: grid;
             grid-template-columns: 1fr 1fr;
+            gap: 0;
         }
 
         /* 왼쪽: 글 목록 */
         .list {
-            padding: 20px 40px 60px 40px;
+            padding: 20px 0 60px 0;
+        }
+
+        /* 헤더 */
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 11pt;
+            line-height: 1.3;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .logo:hover {
+            opacity: 0.6;
         }
 
         .post-item {
@@ -48,9 +67,9 @@ layout: none
         }
 
         .post-category {
-            font-family: 'Georgia', 'Times New Roman', serif;
+            font-family: 'Courier New', 'Courier', monospace;
             font-size: 14pt;
-            font-weight: bold;
+            font-weight: normal;
             letter-spacing: 0.5px;
         }
 
@@ -92,7 +111,7 @@ layout: none
             }
 
             .list {
-                padding: 20px 20px 40px 20px;
+                padding: 20px 0 40px 0;
             }
 
             .preview {
@@ -105,6 +124,18 @@ layout: none
     <div class="wrapper">
         <!-- 왼쪽: 글 목록 -->
         <div class="list">
+            <!-- 헤더 -->
+            <div class="header">
+                <a href="/">
+                    <div class="logo">
+                        Eurasia<br>
+                        Paper<br>
+                        Magazine
+                    </div>
+                </a>
+            </div>
+
+            <!-- 글목록 -->
             <a href="/2026/03/17/Kasseta.html">
                 <div class="post-item" 
                      data-slug="kasseta"
