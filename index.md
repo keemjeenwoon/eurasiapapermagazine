@@ -24,7 +24,7 @@ layout: none
         /* 헤더 - 페이지 최상단 가운데 */
         .header {
             text-align: center;
-            padding: 30px 0;
+            padding: 30px 0 0 0;
         }
 
         .logo {
@@ -58,7 +58,8 @@ layout: none
 
         /* 왼쪽: 글 목록 */
         .list {
-            padding: 20px 0 60px 0;
+            padding: 0;
+            text-align: right;
         }
 
         .post-item {
@@ -100,6 +101,30 @@ layout: none
             opacity: 1;
         }
 
+        /* 모바일 이미지 모달 */
+        .mobile-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mobile-modal.active {
+            display: flex;
+        }
+
+        .mobile-modal img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
         a {
             text-decoration: none;
             color: inherit;
@@ -117,6 +142,7 @@ layout: none
 
             .list {
                 padding: 20px 0 40px 0;
+                text-align: left;
             }
 
             .preview {
@@ -142,7 +168,7 @@ layout: none
         <div class="wrapper">
             <!-- 왼쪽: 글 목록 -->
             <div class="list">
-                <a href="/2026/03/17/Kasseta.html">
+                <a href="/2026/03/17/Kasseta.html" class="post-link">
                     <div class="post-item" 
                          data-slug="kasseta"
                          onmouseenter="showImage(this)"
@@ -162,7 +188,15 @@ layout: none
         </div>
     </div>
 
+    <!-- 모바일 이미지 모달 -->
+    <div class="mobile-modal" id="mobileModal">
+        <img src="" alt="" id="mobileModalImage">
+    </div>
+
     <script>
+        let mobileImageShown = false;
+        let currentSlug = null;
+
         function showImage(element) {
             const slug = element.getAttribute('data-slug');
             
@@ -183,6 +217,36 @@ layout: none
                 img.classList.remove('active');
             });
         }
+
+        // 모바일 터치 이벤트
+        document.querySelectorAll('.post-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 767) {
+                    const slug = this.querySelector('.post-item').getAttribute('data-slug');
+                    
+                    if (!mobileImageShown || currentSlug !== slug) {
+                        e.preventDefault();
+                        
+                        // 이미지 모달 표시
+                        const modal = document.getElementById('mobileModal');
+                        const modalImage = document.getElementById('mobileModalImage');
+                        modalImage.src = '/assets/images/covers/kassetacover.png';
+                        modal.classList.add('active');
+                        
+                        mobileImageShown = true;
+                        currentSlug = slug;
+                    }
+                    // 두 번째 클릭: 페이지 이동 (기본 동작)
+                }
+            });
+        });
+
+        // 모달 클릭 시 닫기
+        document.getElementById('mobileModal').addEventListener('click', function() {
+            this.classList.remove('active');
+            mobileImageShown = false;
+            currentSlug = null;
+        });
     </script>
 </body>
 </html>
