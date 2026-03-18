@@ -23,7 +23,7 @@ layout: none
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 40px;
+            padding: 80px;
         }
 
         .wrapper {
@@ -35,11 +35,11 @@ layout: none
 
         /* 왼쪽: 글 목록 */
         .list {
-            padding: 60px 40px;
+            padding: 120px 80px;
         }
 
         .post-item {
-            margin-bottom: 30px;
+            margin-bottom: 60px;
             cursor: pointer;
             transition: opacity 0.3s;
         }
@@ -77,10 +77,15 @@ layout: none
             opacity: 1;
         }
 
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
         /* 모바일 */
         @media (max-width: 767px) {
             body {
-                padding: 20px;
+                padding: 40px;
             }
 
             .wrapper {
@@ -88,7 +93,7 @@ layout: none
             }
 
             .list {
-                padding: 30px 20px;
+                padding: 60px 40px;
             }
 
             .preview {
@@ -101,12 +106,14 @@ layout: none
     <div class="wrapper">
         <!-- 왼쪽: 글 목록 -->
         <div class="list">
-            <div class="post-item" 
-                 data-slug="kasseta"
-                 onmouseenter="showImage(this)"
-                 onmouseleave="hideImage()">
-                <div class="post-category">[Interview][POCC][КАССЕТА]</div>
-            </div>
+            <a href="/2026/03/17/Kasseta.html">
+                <div class="post-item" 
+                     data-slug="kasseta"
+                     onmouseenter="showImage(this)"
+                     onmouseleave="hideImage()">
+                    <div class="post-category">[Interview][POCC][КАССЕТА]</div>
+                </div>
+            </a>
         </div>
 
         <!-- 오른쪽: 이미지 표시 -->
@@ -121,6 +128,7 @@ layout: none
     <script>
         function showImage(element) {
             const slug = element.getAttribute('data-slug');
+            console.log('Hovering over:', slug);
             
             // 모든 이미지 숨기기
             document.querySelectorAll('.preview-image').forEach(img => {
@@ -128,7 +136,8 @@ layout: none
             });
             
             // 해당 이미지만 표시
-            const targetImage = document.querySelector(`[data-slug="${slug}"]`);
+            const targetImage = document.querySelector(`.preview-image[data-slug="${slug}"]`);
+            console.log('Target image:', targetImage);
             if (targetImage) {
                 targetImage.classList.add('active');
             }
