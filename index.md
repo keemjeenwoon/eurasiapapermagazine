@@ -26,11 +26,12 @@ layout: none
         .header {
             display: flex;
             justify-content: center;
-            padding: 30px 12.5% 20px 12.5%;
+            padding: 30px 0 20px 0;
         }
 
         .logo-container {
-            width: 100%;
+            width: 75%;
+            max-width: 1200px;
             overflow: hidden;
         }
 
@@ -153,6 +154,10 @@ layout: none
         @media (max-width: 767px) {
             .header {
                 padding: 30px 5% 20px 5%;
+            }
+
+            .logo-container {
+                width: 90%;
             }
 
             .logo {
